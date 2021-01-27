@@ -104,6 +104,9 @@ flexscan.rantype <- c("MULTINOMIAL", "POISSON")
 #' @param verbose
 #' Print progress messages.
 #'
+#' @param cores
+#' The number of CPU cores used for Monte Carlo replications.
+#'
 #'
 #' @return
 #' An \code{rflexscan} object which contains analysis results and specified
@@ -307,15 +310,15 @@ spatial.scan <- function(x, y,
                  RDC = RDC, neg2logLik = neg2logLik, AIC = aic, BIC = bic, C = C,
                  nclust = nclust, P = pval, rank = rank, null_dist = maxRDC_null,
                  setting = setting)
-  class(retval) <- "icscan"
+  class(retval) <- "multicluster"
 
   return(retval)
 }
 
 
-#' Summarizing icscan results
+#' Summarizing multicluster results
 #'
-#' Summary method for icscan objects.
+#' Summary method for multicluster objects.
 #'
 #' @param object
 #' An rflexscan object to be summarized.
@@ -323,12 +326,12 @@ spatial.scan <- function(x, y,
 #' @param ...
 #' Ignored.
 #'
-#' @seealso \link{icscan}
+#' @seealso \link{spatial.scan}
 #'
-#' @method summary icscan
+#' @method summary multicluster
 #' @export
 #'
-summary.icscan <- function(object, ...) {
+summary.multicluster <- function(object, ...) {
   n_cluster <- length(object$cluster)
   total_areas <- nrow(object$input$case)
   total_cases <- sum(object$input$case[,"Observed"])
@@ -358,27 +361,27 @@ summary.icscan <- function(object, ...) {
                  cluster=table, RDC = object$RDC, nclust = object$nclust, P = object$P,
                  nclust = object$nclust, setting=object$setting)
 
-  class(retval) <- "summary.icscan"
+  class(retval) <- "summary.multicluster"
   return(retval)
 }
 
 
-#' Print summary of icscan results
+#' Print summary of multicluster results
 #'
-#' Print summary of icscan results to the terminal.
+#' Print summary of multicluster results to the terminal.
 #'
 #' @param x
-#' An summary.icscan object to be printed.
+#' An summary.multicluster object to be printed.
 #'
 #' @param ...
 #' Ignored.
 #'
-#' @seealso \link{spatial.scan}, \link{summary.icscan}
+#' @seealso \link{spatial.scan}, \link{summary.multicluster}
 #'
-#' @method print summary.icscan
+#' @method print summary.multicluster
 #' @export
 #'
-print.summary.icscan <- function(x, ...) {
+print.summary.multicluster <- function(x, ...) {
   cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"),
       "\n\n", sep = "")
 
