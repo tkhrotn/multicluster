@@ -1,0 +1,25 @@
+Package: multicluster
+Type: Package
+Title: Information Criterion and Scan Statistic Approach for Detecting Multiple Disease Clusters
+Version: 0.1.0
+Date: 2021-01-27
+Author: Takahiro Otani,
+    Kunihiko Takahashi
+Maintainer: Takahiro Otani <otani@med.nagoya-cu.ac.jp>
+Description: Functions for detecting multiple disease clusters using the 
+    information criterion and scan statistic approach developed by 
+    Takahashi and Shimazu (2018) <doi:10.1186/s12942-020-00228-y>.
+URL: https://github.com/tkhrotn/multicluster
+License: GPL-3
+Depends: R (>= 3.1.0)
+Imports: rflexscan,
+    utils,
+    foreach,
+    doSNOW,
+    parallel
+Suggests: knitr,
+    rmarkdown,
+    spdep,
+    spData
+RoxygenNote: 7.1.1
+Encoding: UTF-8
